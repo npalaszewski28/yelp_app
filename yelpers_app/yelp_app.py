@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from yelper import get_businesses
-
+import os 
 app = Flask(__name__)
 
 @app.route('/', methods =['GET'])
@@ -25,5 +25,6 @@ def pull(location='Denver',type='food'):
         print(x)
     return render_template('home.html', businesses=bus)
 if __name__ == "__main__":
-    app.run(host="localhost")
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
    
